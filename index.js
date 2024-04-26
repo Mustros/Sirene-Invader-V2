@@ -52,8 +52,6 @@ function main(args) {
             return;
         }
 
-        workerManager.startWorkers();
-
         pm2.launchBus(function (err, pm2bus) {
             pm2bus.on('process:done', function (packet) {
                 workerManager.pushWorker(packet.data.pId, (pId) => {
@@ -69,6 +67,8 @@ function main(args) {
                 });
             })
         });
+
+        workerManager.startWorkers();
     });
 }
 
