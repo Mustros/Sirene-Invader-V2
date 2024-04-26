@@ -44,6 +44,8 @@ function main(args) {
         return;
     }
 
+    csvManager.splitCSV(csvFile);
+
     pm2.connect(async function (err) {
         if(err) {
             console.log(err);
@@ -68,8 +70,6 @@ function main(args) {
             })
         });
     });
-
-    csvManager.splitCSV(csvFile);
 }
 
 main(process.argv);
